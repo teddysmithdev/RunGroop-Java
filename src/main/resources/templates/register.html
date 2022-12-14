@@ -1,0 +1,74 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <title>Register</title>
+</head>
+    <section layout:fragment="body">
+        <style>
+            .main {
+                padding: 0px 10px;
+            }
+
+            @media screen and (max-width: 450px) {
+                .login-form{
+                    margin-top: 10%;
+                }
+                .register-form{
+                    margin-top: 10%;
+                }
+            }
+            @media screen and (min-width: 768px){
+                .main{
+                    margin-left: 30%;
+                }
+
+                .sidenav{
+                    width: 40%;
+                    position: fixed;
+                    z-index: 1;
+                    top: 0;
+                    left: 0;
+                }
+            }
+        </style>
+        <div class="main">
+            <div class="col-md-6 col-sm-12">
+                <div class="login-form">
+                    <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Username"
+                                    th:field="*{username}">
+                        </div>
+                        <p th:if="${#fields.hasErrors('username')}" class="text-danger"></p>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Email"
+                                    th:field="*{email}">
+                        </div>
+                        <p th:if="${#fields.hasErrors('email')}" class="text-danger"></p>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input
+                                    type="password"
+                                    class="form-control"
+                                    placeholder="Password"
+                                    th:field="*{password}">
+                        </div>
+                        <p th:if="${#fields.hasErrors('password')}" class="text-danger"></p>
+                        <button th:href="@{/login}" type="submit" class="btn btn-black">Login</button>
+                        <button type="submit" class="btn btn-secondary">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</html>
